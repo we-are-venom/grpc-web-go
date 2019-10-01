@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+enum Status {
+    option allow_alias = true;
+    UNKNOWN = 0;
+    STARTED = 1;
+    RUNNING = 1;
+}
+
+message Book {
+    int64 isbn = 1;
+    string title = 2;
+    string author = 3;
+    Status status = 4;
+}
+
+message SearchBookRequest {
+    string input = 1;
+}
+
+service BookService {
+    rpc SearchBook (SearchBookRequest) returns (stream Book) {}
+}
+
